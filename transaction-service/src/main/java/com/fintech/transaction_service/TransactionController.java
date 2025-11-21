@@ -16,6 +16,7 @@ public class TransactionController {
     public Flux<Transaction> getAllTransactions() {
         return transactionRepository.findAll();
     }
+
     @PostMapping
     public Mono<Transaction> createTransaction(@RequestBody Transaction transaction) {
         return transactionRepository.save(transaction);
