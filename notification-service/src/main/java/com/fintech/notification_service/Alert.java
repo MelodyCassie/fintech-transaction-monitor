@@ -8,6 +8,12 @@ import java.time.LocalDateTime;
 public class Alert {
     private String message;
     private String transactionId;
-    private LocalDateTime timeStamp;
+    private LocalDateTime timestamp;
+
+    public Alert(String message, String transactionId) {
+        this.message = message;
+        this.transactionId = transactionId;
+        this.timestamp = LocalDateTime.now();
+    }
 
 }
