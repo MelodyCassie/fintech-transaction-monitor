@@ -9,7 +9,7 @@ public class NotificationController{
 
     @PostMapping
     public Mono<Alert> createAlert(@RequestBody Alert alert) {
-        System.out.println("🚨 ALERT: " + alert.getMessage());
+        System.out.println("ALERT: " + alert.getMessage());
         return Mono.just(alert);
     }
 
