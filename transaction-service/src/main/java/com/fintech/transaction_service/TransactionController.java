@@ -8,21 +8,28 @@ import reactor.core.publisher.Mono;
 
 @Slf4j
 @RestController
-@RequestMapping("/transaction")
+@RequestMapping("/transactions")
 public class TransactionController {
 
     @Autowired
-    private TransactionRepository transactionRepository;
+    private TransactionService transactionService;
 
     @GetMapping
     public Flux<Transaction> getAllTransactions() {
         log.info("GET /transactions called");
-        return transactionRepository.findAll()
+        return transactionService.getAllTransactions();
+    }
 
-                .switchIfEmpty(Flux.just(
-                        new Transaction(1000.0, "Default", "User", "Sample transaction")
-                ));
+    @PostMapping
+    public Mono<Transaction> createTransaction(@RequestBody Transaction transaction) {
+        log.info("POST /transactions called with: {}", transaction);
+        return transactionService.createTransaction(transaction);
+    }
 
+    @GetMapping("/large")
+    public Flux<Transaction> getLargeTransactions() {
+        log.info("GET /transactions/large called");
+        return transactionService.getLargeTransactions();
     }
 
     @GetMapping("/test")
@@ -30,22 +37,4 @@ public class TransactionController {
         log.info("TEST endpoint called");
         return Mono.just("Transaction service is working!");
     }
-
-    @PostMapping
-    public Mono<Transaction> createTransaction(@RequestBody Transaction transaction) {
-        log.info("POST /transactions called with: {}", transaction);
-        return transactionRepository.save(transaction);
-    }
-
-    @GetMapping("/large")
-    public Flux<Transaction> getLargeTransactions() {
-        log.info("GET /transactions/large called");
-        return transactionRepository.findByAmountGreaterThan(5000.0)
-                .switchIfEmpty(Flux.just(
-                        new Transaction(6000.0, "Large", "Transfer", "Sample large transaction")
-                ));
-
-    }
-
-
 }
