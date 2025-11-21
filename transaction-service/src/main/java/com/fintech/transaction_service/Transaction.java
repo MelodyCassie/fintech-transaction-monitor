@@ -1,12 +1,10 @@
 package com.fintech.transaction_service;
 
-import com.fasterxml.jackson.databind.node.DoubleNode;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 
