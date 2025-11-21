@@ -10,11 +10,16 @@ import java.time.LocalDateTime;
 @Data
 @Table("transactions")
 public class Transaction {
+    @id
     private Long id;
     private Double amount;
     private String fromAccount;
     private String toAccount;
     private String description;
     private LocalDateTime timestamp;
+
+    public Transaction() {
+        this.timestamp = LocalDateTime.now();
+    }
 
 }
