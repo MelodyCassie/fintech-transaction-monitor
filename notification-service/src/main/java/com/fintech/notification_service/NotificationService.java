@@ -6,9 +6,7 @@ import reactor.core.publisher.Mono;
 @Service
 public class NotificationService {
 
-    public Mono<Alert> sendAlert(Alert alert) {
-
-        System.out.println("🔔 SENDING ALERT: " + alert.getMessage());
+    public Mono<Alert> processFinancialAlert(Alert alert) {
         return Mono.just(alert);
     }
 }
