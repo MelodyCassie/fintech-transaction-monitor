@@ -19,6 +19,7 @@ public class NotificationController{
         return notificationService.detectSuspiciousActivity(amount, fromAccount, toAccount);
     }
 
+
     @PostMapping("/custom")
     public Mono<Alert> createCustomAlert(@RequestBody Alert alert) {
         return notificationService.processFinancialAlert(alert);
