@@ -11,6 +11,7 @@ public class NotificationController{
     @Autowired
     private NotificationService notificationService;
 
+
     @PostMapping("/suspicious")
     public Mono<Alert> flagSuspiciousTransaction(@RequestParam Double amount,
                                                  @RequestParam String fromAccount,
